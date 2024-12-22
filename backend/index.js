@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const routesHandler = require('./routes/handler.js');
+const groceryStores = require('./routes/groceryStores');
 const mongoose = require('mongoose');
 require('dotenv/config');
 
@@ -14,6 +16,8 @@ const corsOptions = {
     optionSuccessStatus: 200
 }
 app.use('/', routesHandler);
+app.use('/api/groceryStores', groceryStoreRoutes);
+
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
