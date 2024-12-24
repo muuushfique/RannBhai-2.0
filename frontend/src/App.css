@@ -132,9 +132,13 @@ body {
 }
 
 .required {
-  color: red;
+  color: darkgoldenrod;
 }
 
 .success {
   color: green;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

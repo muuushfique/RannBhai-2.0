@@ -6,12 +6,14 @@ import GovtIssues from './components/GovtIssues';
 import Contact from './components/Contact'
 import Nearme from './components/nearme'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './index.css';
+
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tweets" element={<Tweet />} />
