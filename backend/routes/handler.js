@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const schemas = require('../models/schemas')
-
+const controller = require('../controllers/controller')
 router.get('/tweets', (req, res) => {
     const str = [
         {
@@ -271,6 +271,37 @@ router.get('/glossary/:word', async (req, res) => {
         res.status(500).json({ message: 'Error searching glossary' });
     }
 });
+
+
+
+//code by me(Ipsit)
+router.post('/add-new-faq', controller.add_new_faq)
+router.get('/faqs', controller.get_all_faq);
+router.delete('/delete-faq/:id', controller.delete_faq);
+router.put('/update-faq/:id', controller.update_faq);
+router.post('/add-new-meal', controller.add_new_meal);
+router.get('/meals', controller.get_all_meals);
+router.delete('/delete-meal/:id', controller.delete_meal);
+router.put('/update-meal/:id', controller.update_meal);
+
+
+  
+  // Route to fetch nearby grocery stores
+  router.get("/stores", async (req, res) => {
+    const { latitude, longitude, radius } = req.query;
+  
+    const lat = parseFloat(latitude);
+    const lon = parseFloat(longitude);
+    const rad = parseFloat(radius);
+  
+    if (!lat || !lon || !rad) {
+      return res.status(400).json({ error: "Invalid or missing query parameters." });
+    }
+  
+    const stores = await schemas.GroceryStore.find();
+    
+    res.json(stores);
+  });
 
 
 module.exports = router;
